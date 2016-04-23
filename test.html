@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQM Complex Demo</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>  
+    
+    
+<script>
+$(document).on('pagebeforeshow', '#index', function(){       
+    $(document).on('click', '#change-page-button', function(){     
+        // store some data
+        storeObject.firstname = 'Dragan';
+        storeObject.lastname = 'Gaic';
+        //Change page
+        $.mobile.changePage("#second");
+    });    
+});
+
+$(document).on('pagebeforeshow', '#second', function(){     
+    alert('My name is ' + storeObject.firstname + ' ' + storeObject.lastname);
+});
+
+// Store object
+var storeObject = {
+    firstname : '',
+    lastname : ''
+}
+</script>
+    
+</head>
+<body>
+    <div data-role="page" id="index">
+        <div data-theme="a" data-role="header">
+            <h3>
+                First Page
+            </h3>
+        </div>
+
+        <div data-role="content">
+            <a href="#" data-role="button" id="change-page-button">Open next page to see a result</a>
+        </div>
+
+        <div data-theme="a" data-role="footer" data-position="fixed">
+
+        </div>
+    </div> 
+    <div data-role="page" id="second">
+        <div data-theme="a" data-role="header">
+            <h3>
+                Second Page
+            </h3>
+            <a href="#index" class="ui-btn-left">Back</a>
+        </div>
+
+        <div data-role="content">
+
+        </div>
+
+        <div data-theme="a" data-role="footer" data-position="fixed">
+
+        </div>
+    </div>    
+</body>
+</html>

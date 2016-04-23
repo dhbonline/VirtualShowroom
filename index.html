@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="getdata.js"></script>
+  <style>
+      td {
+          border-bottom: 1px solid gray;
+      }
+      
+      .ui-content {
+          padding: 3px;
+      }
+
+  </style>
+
+</head>
+<body>
+
+    
+<div data-role="page" id="vehiclepage" data-theme=b>
+  
+      <div data-role="header" data-position="fixed" >
+          <h2><img src="icon.png" width="100%" /></h2>
+
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="index.html" data-icon="home"></a></li>
+        <li><a href="news.html" data-icon="bars"></a></li>
+        <li><a href="apps.html" data-icon="grid"></a></li>
+        <li><a href="user.html" data-icon="user"></a></li>
+       </ul>
+        <form class="ui-filterable">
+      <input id="myFilter" data-type="search" placeholder="Search Vehicle">
+    </form>
+    </div>
+                </div>
+    <div data-role="main" class="ui-content">
+
+    <div data-role="content">
+     <ul data-role="listview" data-filter="true" data-input="#myFilter" data-inset="true" id="vehiclelist" class="ui-li-icon"></ul>
+    </div>
+      
+  
+        
+      
+ </div>
+      
+     
+     
+<div data-role="footer">
+  <p align="middle"><font size="1">2016 &copy; Indra Traders(Pvt) Limited.<br>All rights reserved.</font></p>
+</div>
+
+    </div>
+
+</body>
+</html> 

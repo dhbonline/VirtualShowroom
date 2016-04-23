@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ </head>
+<body>
+
+    
+<div data-role="page" id="apps" data-theme=b>
+
+      <div data-role="header" data-position="fixed">
+          <h2>Widgets</h2>
+          <div data-role="navbar">
+      <ul>
+        <li><a href="index.html" data-icon="home"></a></li>
+        <li><a href="news.html" data-icon="bars"></a></li>
+        <li><a href="apps.html" data-icon="grid"></a></li>
+        <li><a href="user.html" data-icon="user"></a></li>
+ 
+      </ul>
+    </div>
+      </div>    
+    
+    <div data-role="main" class="ui-content">
+     <h2 align="middle">Lease Payment Calculator</h2>
+  <div data-role="content">
+
+<table width="100%">
+<tr><td><input type="hidden" id="per" value="12">Amount (LKR):</td><td><input type="text" value="" id="pv"></td></tr>
+    <tr><td>Interest Rate (%):</td><td><input type="text" value="" id="rate"></td></tr>
+    <tr><td span=2>Payments made:</td></tr>
+    <tr><td align="right">Monthly</td><td><input type="radio" checked id="R1" onclick="$('#per').val()=12"></td></tr>
+    <tr><td align="right">Quarterly</td><td><input type="radio" id="R1"  onclick="$('#per').val()=4"></td></tr>
+    <tr><td align="right">Half-yearly</td><td><input type="radio" id="R1"  onclick="$('#per').val()=2"></td></tr>
+    <tr><td align="right">Yearly</td><td><input type="radio" id="R1" onclick="$('#per').val()=1"></td></tr>
+
+<tr><td>Total Number of Payments :</td><td><input type="text" value=""
+    id="nper"></td></tr>
+   <tr><td><p hidden>Future Value : <input type="text" value="" id="fv" > If omitted 0 is assumed.</p></td><td><a data-role="button" id="addbtn">Calculate</a></td></tr>
+<tr><td>Each Payment Amount (LKR):</td><td><input type="text" value="" id="pmtfield"></td></tr>
+
+</table>
+
+
+      
+      
+      </div>
+<!--  -->             
+      
+ </div>
+    
+<div data-role="footer">
+  <p align="middle"><font size="1">2016 &copy; Indra Traders(Pvt) Limited.<br>All rights reserved.</font></p>
+</div>
+
+    </div>
+<script>
+      
+    function pmt(rate, per, nper, pv, fv) {
+       fv = parseFloat(fv);
+       nper = parseFloat(nper);
+       pv = parseFloat(pv);
+       per = parseFloat(per);
+       if (( per == 0 ) || ( nper == 0 )) {
+          alert("Why do you want to test me with zeros?");
+          return(0);
+       }
+       rate = eval((rate)/(per * 100));
+       if ( rate == 0 )    // Interest rate is 0
+       {
+           pmt_value = - (fv + pv)/nper;
+       }
+       else 
+       {
+           x = Math.pow(1 + rate,nper);
+                       pmt_value = -((rate * (fv + x * pv))/(-1 + x));
+       }
+       pmt_value = conv_number(pmt_value*-1,2);		
+       return (pmt_value);
+    }
+
+    function conv_number(expr, decplaces) {       
+         var str = "" + Math.round(eval(expr) * Math.pow(10,decplaces));
+         while (str.length <= decplaces) {
+               str = "0" + str;
+         }
+         var decpoint = str.length - decplaces;
+         return (str.substring(0,decpoint) + "." + str.substring(decpoint,str.length));
+    }
+    
+    $('#addbtn').on('click', function(){     
+
+        $("#pmtfield").val() = pmt($("#rate").val(),$("#per").val(),$("#nper").val(),$("#pv").val(),$("#fv").val());
+        } 
+    
+    </script>
+    
+</body>
+</html> 
